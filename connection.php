@@ -23,3 +23,12 @@ function gettasks(int $condition) {
     return $tasks;
 }
 /////////////////////////////
+function inserttask() {
+    global $db;
+
+    $sql="INSERT INTO `task`(`description`, `condition`) VALUES (?,?)";
+    $stmt =$db->prepare($sql);
+    $stmt->bindParam(1,$description);
+    $stmt->bindParam(2,$condition);
+    $stmt->execute();
+}
