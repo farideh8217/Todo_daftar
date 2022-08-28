@@ -1,15 +1,14 @@
 <?php
 include_once "connection.php";
+
 if (isset($_POST["submit"])) {
     $description = $_POST["description"];
     $condition = $_POST["condition"];
-    $sql="INSERT INTO `task`(`description`, `condition`) VALUES (?,?)";
-    $stmt =$db->prepare($sql);
-    $stmt->bindParam(1,$description);
-    $stmt->bindParam(2,$condition);
-    $stmt->execute();
+    
+    InsertTask($description,$condition);
     
     header("Location: index.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -21,14 +20,14 @@ if (isset($_POST["submit"])) {
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="POST">
-        description:<br><textarea name="description" rows="4" cols="50"></textarea><br>
-        <select name="condition">
-            <option value="0">به زودی-0</option>
-            <option value="1">درحال انجام-1</option>
-            <option value="2">انجام شده-2</option>
-        </select><br><br>
-        <input type="submit" name="submit" value="insert"> 
-    </form>
+<form action="" method="POST">
+    description:<br><textarea name="description" rows="4" cols="50"></textarea><br>
+    <select name="condition">
+        <option value="0">به زودی-0</option>
+        <option value="1">درحال انجام-1</option>
+        <option value="2">انجام شده-2</option>
+    </select><br><br>
+    <input type="submit" name="submit" value="insert"> 
+</form>
 </body>
 </html>
